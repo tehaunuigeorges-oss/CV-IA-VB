@@ -1,0 +1,87 @@
+@font-face{
+    font-family: 'Agrandir';
+    src: url('../ressources/Agrandir.otf');
+}
+@font-face{
+    font-family: 'Brixton';
+    src: url('../ressources/Brixton.ttf');
+}
+@font-face{
+    font-family: 'Inter';
+    src: url('../ressources/Inter.ttf')
+}
+body{
+    background-color: #0d0d11;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.2)1px, transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,0.2)1px,transparent 1px);
+    background-size: 40px 40px;
+    main{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        min-height: 100vh;
+        gap:20px;
+        h1{
+            font-family:'Brixton';
+            color:white;
+        }
+        h2{
+            font-family: 'Agrandir';
+            color:white;
+        }
+        p{
+            font-family: 'Inter';
+            color: white;
+        }
+        .pp{
+            border-radius: 50%;
+            width: 350px;
+            place-self: center;
+            }
+        }
+    footer {
+        nav {
+            margin: 0 auto;
+        }
+        .navigation {
+            display: flex;
+            flex-direction: row;        
+            justify-content: space-around;
+            align-items: center;
+            width: 90%;
+            max-width: 800px;
+            height: 74px;
+            border-width: 2px;
+            border-color:white;
+            border-style: solid;
+            border-radius: 80px;
+            position: fixed;
+            bottom: 20px;           
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            font-family: 'Brixton';
+        }
+            .navigation a {
+                display: flex;
+                flex-direction: column;     
+                align-items: center;     
+                gap: 4px;                 
+                color: white;
+                text-decoration: none;
+                padding:5px;
+                line-height: 0;
+                margin-top: 5px;
+                transition: transform 0.3s ease;
+            }
+            .libelle,.icon {
+                    color: white;
+            }
+            .icon {
+                    filter: invert(100%);
+            }
+            .navigation a:hover {
+                transform: translateY(-6px);
+            }
+    }
+}
