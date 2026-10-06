@@ -1,0 +1,216 @@
+:root {
+    --title-width: 600px;
+    --title-height: auto;
+    --card-height: 220px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: 'Agrandir';
+    src: url('../ressources/Agrandir.otf');
+}
+
+@font-face {
+    font-family: 'Brixton';
+    src: url('../ressources/Brixton.ttf');
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../ressources/Inter.ttf');
+}
+
+@keyframes apparitionDepuisBas {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+body {
+    min-height: 100vh;
+    padding: 24px;
+    background-color: #0d0d11;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+}
+
+main {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 40px;
+    width: 100%;
+    margin: 0 auto;
+    animation: apparitionDepuisBas 0.8s ease-out;
+    margin-bottom: 100px;
+}
+
+main h1 {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: min(var(--title-width), 100%);
+    height: var(--title-height);
+    padding: 15px;
+    border: 1px outset #ffffff;
+    border-radius: 12px;
+    transition: box-shadow 0.4s ease;
+    text-align: center;
+    ;
+}
+
+main h1:hover,
+main > a:hover {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+}
+
+main > a {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+    width: 100%;
+    height: var(--card-height);
+    padding: 15px;
+    overflow: hidden;
+    border: 2px outset #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+    text-decoration: none;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+main > a:hover {
+    z-index: 1;
+    transform: scale(1.1);
+}
+
+.image-frame {
+    position: relative;
+    container-type: inline-size;
+    width: 100%;
+    height: 12.5vh;
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+main img {
+    display: block;
+    width: 100%;
+    height: 12.5vh;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.cuisine img,
+.musculation img,
+.vetement img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12.5vh;
+    height: 100cqi;
+    transform: translate(-50%, -50%) rotate(-90deg) scale(1.05);
+}
+
+
+main h2 {
+    margin-top: 20px;
+    color: #ffffff;
+    font-family: 'Agrandir', sans-serif;
+    font-size: 1.5rem;
+    text-align: center;
+}
+footer {
+    width: 100%;
+}
+
+.navigation {
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 90%;
+    max-width: 800px;
+    height: 74px;
+    padding: 0 15px;
+    background-color: rgba(13, 13, 17, 0.85);
+    backdrop-filter: blur(12px);
+    border: 2px outset #ffffff;
+    border-radius: 80px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    font-family: 'Brixton', sans-serif;
+    animation: apparitionDepuisBas 1.5s ease-out;
+    transition: box-shadow 0.4s ease, border-color 0.4s ease;
+    background-color: rgba(13, 13, 17, 0.3);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.navigation:hover {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+}
+
+.navigation a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 6px;
+    transition: transform 0.3s ease;
+}
+
+.navigation a:hover {
+    transform: translateY(-6px);
+}
+
+.icon {
+    width: clamp(18px, 4vw, 24px);
+    height: auto;
+    filter: invert(100%);
+}
+
+.libelle {
+    color: #ffffff;
+    font-size: clamp(0.65rem, 1.8vw, 0.85rem);
+    line-height: 1;
+    white-space: nowrap;
+}
+
+@media (max-width: 760px) {
+    main {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 520px) {
+    body {
+        padding: 16px;
+    }
+
+    main {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+    }
+}

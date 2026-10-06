@@ -1,87 +1,199 @@
-@font-face{
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
     font-family: 'Agrandir';
     src: url('../ressources/Agrandir.otf');
 }
-@font-face{
+
+@font-face {
     font-family: 'Brixton';
     src: url('../ressources/Brixton.ttf');
 }
-@font-face{
+
+@font-face {
     font-family: 'Inter';
-    src: url('../ressources/Inter.ttf')
+    src: url('../ressources/Inter.ttf');
 }
-body{
+
+/* --- ANIMATIONS --- */
+
+@keyframes apparitionDepuisBas {
+    0% {
+        opacity: 0;
+        transform: translateY(75px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+body {
     background-color: #0d0d11;
-    background-image:
-        linear-gradient(rgba(255,255,255,0.2)1px, transparent 1px),
-        linear-gradient(90deg,rgba(255,255,255,0.2)1px,transparent 1px);
-    background-size: 40px 40px;
-    main{
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        min-height: 100vh;
-        gap:20px;
-        h1{
-            font-family:'Brixton';
-            color:white;
-        }
-        h2{
-            font-family: 'Agrandir';
-            color:white;
-        }
-        p{
-            font-family: 'Inter';
-            color: white;
-        }
-        .pp{
-            border-radius: 50%;
-            width: 350px;
-            place-self: center;
-            }
-        }
-    footer {
-        nav {
-            margin: 0 auto;
-        }
-        .navigation {
-            display: flex;
-            flex-direction: row;        
-            justify-content: space-around;
-            align-items: center;
-            width: 90%;
-            max-width: 800px;
-            height: 74px;
-            border-width: 2px;
-            border-color:white;
-            border-style: solid;
-            border-radius: 80px;
-            position: fixed;
-            bottom: 20px;           
-            left: 0;
-            right: 0;
-            margin: 0 auto;
-            font-family: 'Brixton';
-        }
-            .navigation a {
-                display: flex;
-                flex-direction: column;     
-                align-items: center;     
-                gap: 4px;                 
-                color: white;
-                text-decoration: none;
-                padding:5px;
-                line-height: 0;
-                margin-top: 5px;
-                transition: transform 0.3s ease;
-            }
-            .libelle,.icon {
-                    color: white;
-            }
-            .icon {
-                    filter: invert(100%);
-            }
-            .navigation a:hover {
-                transform: translateY(-6px);
-            }
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+}
+main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    align-items: center;
+    gap: 70px; 
+    max-width: 1600px;
+    margin: 0 auto; 
+    padding: 60px 30px 160px 30px; 
+}
+main h1, 
+main h2, 
+main p {
+    border: 1px outset #ffffff;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.9);
+    transition: box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+main h1:hover, 
+main h2:hover, 
+main p:hover {
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
+}
+main h1 {
+    font-family: 'Brixton', serif;
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    color: #e2e8f0;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+main h2 {
+    font-family: 'Agrandir', sans-serif;
+    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+    color: #e2e8f0;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+main p {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #cbd5e1;
+    text-align: left;
+}
+.pp {
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 50%;
+    justify-self: center;
+    border: 2px outset #ffffff;
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.9);
+    transition: box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.pp:hover {
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
+}
+footer {
+    width: 100%;
+}
+
+.navigation {
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 90%;
+    max-width: 800px;
+    height: 74px;
+    padding: 0 15px;
+    background-color: rgba(13, 13, 17, 0.85);
+    backdrop-filter: blur(12px);
+    border: 2px outset #ffffff;
+    border-radius: 80px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    font-family: 'Brixton', sans-serif;
+    animation: apparitionDepuisBas 1.5s ease-out;
+    transition: box-shadow 0.4s ease, border-color 0.4s ease;
+    background-color: rgba(13, 13, 17, 0.3);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.navigation:hover {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+}
+
+.navigation a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 6px;
+    transition: transform 0.3s ease;
+}
+
+.navigation a:hover {
+    transform: translateY(-6px);
+}
+
+.icon {
+    width: clamp(18px, 4vw, 24px);
+    height: auto;
+    filter: invert(100%);
+}
+
+.libelle {
+    color: #ffffff;
+    font-size: clamp(0.65rem, 1.8vw, 0.85rem);
+    line-height: 1;
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    main {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 40px 20px 140px 20px;
+    }
+
+    .pp {
+        max-width: 260px;
+    }
+}
+
+@media (max-width: 600px) {
+    .navigation {
+        height: 62px;
+        width: 95%;
+        padding: 0 8px;
+        bottom: 12px;
+        border-radius: 40px;
+    }
+
+    .navigation a {
+        gap: 2px;
+        padding: 4px;
+    }
+
+    .libelle {
+        font-size: 0.65rem;
     }
 }
