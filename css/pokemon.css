@@ -1,0 +1,151 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+@font-face {
+    font-family: 'Agrandir';
+    src: url('../ressources/Agrandir.otf');
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../ressources/Inter.ttf');
+}
+
+body {
+    min-height: 100vh;
+    background-color: #0d0d11;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+}
+
+.pokemon-ban {
+     width: 100%;
+    height: clamp(220px, 42vw, 460px);
+    overflow: hidden;
+}
+
+.pokemon-ban img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+main {
+    width: min(1000px, 100%);
+    margin: 40px auto; 
+    padding: 0 20px;
+    text-align: left; 
+    margin-bottom: 100px;
+}
+h1 {
+    max-width: 800px; 
+    margin: 0 auto 24px auto; 
+    font-family: 'Agrandir', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    text-align: center;
+    padding: 15px 25px;
+    border: 1px outset #ffffff;
+    border-radius: 15px;
+    transition: box-shadow 0.4s ease;
+}
+
+h1:hover,
+p:hover {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+}
+main p {
+    max-width: 1750px; 
+    margin: 0 auto;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    border: 1px outset #ffffff;
+    border-radius: 12px;
+    transition: box-shadow 0.4s ease;
+    text-align: left;
+    padding: 25px;
+}
+footer {
+    width: 100%;
+}
+
+.navigation {
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 90%;
+    max-width: 800px;
+    height: 74px;
+    padding: 0 15px;
+    background-color: rgba(13, 13, 17, 0.85);
+    backdrop-filter: blur(12px);
+    border: 2px outset #ffffff;
+    border-radius: 80px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    font-family: 'Brixton', sans-serif;
+    animation: apparitionDepuisBas 1.5s ease-out;
+    transition: box-shadow 0.4s ease, border-color 0.4s ease;
+    background-color: rgba(13, 13, 17, 0.3);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.navigation:hover {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+}
+
+.navigation a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 6px;
+    transition: transform 0.3s ease;
+}
+
+.navigation a:hover {
+    transform: translateY(-6px);
+}
+
+.icon {
+    width: clamp(18px, 4vw, 24px);
+    height: auto;
+    display: block;
+    filter: brightness(0) invert(1);
+    -webkit-filter: brightness(0) invert(1);
+    color: #ffffff;
+    object-fit: contain;
+}
+
+.libelle {
+    color: #ffffff;
+    font-size: clamp(0.65rem, 1.8vw, 0.85rem);
+    line-height: 1;
+    white-space: nowrap;
+}
+
+
+@media (max-width: 520px) {
+    main {
+        padding: 28px 18px 40px;
+    }
+
+    main p {
+        font-size: 1rem;
+    }
+}

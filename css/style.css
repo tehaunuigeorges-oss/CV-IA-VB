@@ -157,7 +157,11 @@ footer {
 .icon {
     width: clamp(18px, 4vw, 24px);
     height: auto;
-    filter: invert(100%);
+    display: block;
+    filter: brightness(0) invert(1);
+    -webkit-filter: brightness(0) invert(1);
+    color: #ffffff;
+    object-fit: contain;
 }
 
 .libelle {
