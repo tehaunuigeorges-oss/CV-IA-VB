@@ -55,14 +55,14 @@ main p {
     border: 1px outset #ffffff;
     border-radius: 20px;
     padding: 30px;
-    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.9);
+    box-shadow: 0 0 0 rgba(255, 255, 255, 0), 0 20px 40px -15px rgba(0, 0, 0, 0.9);
     transition: box-shadow 0.4s ease, border-color 0.4s ease;
 }
 
 main h1:hover, 
 main h2:hover, 
 main p:hover {
-    box-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.9), 0 20px 40px -15px rgba(0, 0, 0, 0.9);
 }
 main h1 {
     font-family: 'Brixton', serif;
@@ -96,12 +96,12 @@ main p {
     border-radius: 50%;
     justify-self: center;
     border: 2px outset #ffffff;
-    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.9);
+    box-shadow: 0 0 0 rgba(255, 255, 255, 0), 0 20px 40px -15px rgba(0, 0, 0, 0.9);
     transition: box-shadow 0.4s ease, border-color 0.4s ease;
 }
 
 .pp:hover {
-    box-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.9), 0 20px 40px -15px rgba(0, 0, 0, 0.9);
 }
 footer {
     width: 100%;

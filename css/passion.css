@@ -69,8 +69,7 @@ main h1 {
     ;
 }
 
-main h1:hover,
-main > a:hover {
+main h1:hover {
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
 }
 
@@ -87,15 +86,17 @@ main > a {
     overflow: hidden;
     border: 2px outset #ffffff;
     border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 0 rgba(255, 255, 255, 0), 0 10px 25px rgba(0, 0, 0, 0.5);
     color: #ffffff;
     text-decoration: none;
     transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-main > a:hover {
+main > a:hover,
+main > a:focus-visible {
     z-index: 1;
     transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 10px 25px rgba(0, 0, 0, 0.5);
 }
 
 .image-frame {

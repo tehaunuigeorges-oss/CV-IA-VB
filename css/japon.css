@@ -16,6 +16,22 @@
     src: url('../ressources/Inter.ttf');
 }
 
+@font-face {
+    font-family: 'Brixton';
+    src: url('../ressources/Brixton.ttf');
+}
+
+@keyframes apparitionDepuisBas {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 body {
     min-height: 100vh;
     background-color: #0d0d11;
@@ -24,8 +40,8 @@ body {
 }
 
 .japon-ban {
-     width: 100%;
-    height: clamp(220px, 42vw, 460px);
+    width: 100%;
+    height: clamp(180px, 50vh, 460px);
     overflow: hidden;
 }
 
