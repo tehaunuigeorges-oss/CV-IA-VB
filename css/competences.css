@@ -21,11 +21,55 @@ body {
     background-color: #0d0d11;
     color: #ffffff;
     font-family: 'Inter', sans-serif;
+    padding: 20PX;
+}
+header {
+    justify-self: center;
+    width: 500px;
+    height: auto;
+    padding: 15px;
+    border: 1px outset #ffffff;
+    border-radius: 12px;
+    transition: box-shadow 0.4s ease;
+    text-align: center;
+    margin-bottom: 50px;
 }
 footer {
     width: 100%;
 }
+.competences {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+}
 
+.competences h1 {
+      justify-self: center;
+    width: min(var(--title-width), 100%);
+    height: var(--title-height);
+    padding: 15px;
+    border: 1px outset #ffffff;
+    border-radius: 12px;
+    transition: box-shadow 0.4s ease;
+    text-align: center;
+    font-family: 'Agrandir';
+    margin-bottom: 20px;
+}
+.competences ul {
+    padding: 60px;
+    border: 1px outset #ffffff;
+    border-radius: 12px;
+    transition: box-shadow 0.4s ease;
+    text-align: left;
+    font-family: 'Inter';
+    font-size: 20PX;
+
+}
+header:hover,
+.competences ul:hover,
+.competences h1:hover {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+}
 .navigation {
     position: fixed;
     bottom: 20px;
