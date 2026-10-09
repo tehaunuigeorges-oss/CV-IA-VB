@@ -1,221 +1,218 @@
-:root {
-    --title-width: 600px;
-    --title-height: auto;
-    --card-height: 220px;
-}
+/* =========================================================
+   Mes passions — grille de cartes avec un objet 3D par passion
+   ========================================================= */
 
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-@font-face {
-    font-family: 'Agrandir';
-    src: url('../ressources/Agrandir.otf');
-}
-
-@font-face {
-    font-family: 'Brixton';
-    src: url('../ressources/Brixton.ttf');
-}
-
-@font-face {
-    font-family: 'Inter';
-    src: url('../ressources/Inter.ttf');
-}
-
-@keyframes apparitionDepuisBas {
-    0% {
-        opacity: 0;
-        transform: translateY(40px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-body {
-    min-height: 100vh;
-    padding: 24px;
-    background-color: #0d0d11;
-    color: #ffffff;
-    font-family: 'Inter', sans-serif;
-}
-
-main {
+/* Mobile : une carte par ligne (les grands écrans sont gérés en bas du fichier) */
+.passion-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 40px;
-    width: 100%;
+    grid-template-columns: minmax(0, 1fr);
+    grid-auto-rows: minmax(370px, auto);
+    gap: 16px;
+    width: min(var(--page-width), 100% - var(--gutter) * 2);
     margin: 0 auto;
-    animation: apparitionDepuisBas 0.8s ease-out;
-    margin-bottom: 100px;
 }
 
-main h1 {
-    grid-column: 1 / -1;
-    justify-self: center;
-    width: min(var(--title-width), 100%);
-    height: var(--title-height);
-    padding: 15px;
-    border: 1px outset #ffffff;
-    border-radius: 12px;
-    transition: box-shadow 0.4s ease;
-    text-align: center;
-    ;
-}
-
-main h1:hover {
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
-}
-
-main > a {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    min-width: 0;
-    width: 100%;
-    height: var(--card-height);
-    padding: 15px;
-    overflow: hidden;
-    border: 2px outset #ffffff;
-    border-radius: 15px;
-    box-shadow: 0 0 0 rgba(255, 255, 255, 0), 0 10px 25px rgba(0, 0, 0, 0.5);
-    color: #ffffff;
-    text-decoration: none;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-
-main > a:hover,
-main > a:focus-visible {
-    z-index: 1;
-    transform: scale(1.1);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 10px 25px rgba(0, 0, 0, 0.5);
-}
-
-.image-frame {
-    position: relative;
+/* Chaque case sert de conteneur : la carte adapte sa mise en page à sa propre largeur */
+.passion-grid__item {
     container-type: inline-size;
-    width: 100%;
-    height: 12.5vh;
-    overflow: hidden;
-    border-radius: 15px;
 }
 
-main img {
+.passion-card {
+    position: relative;
     display: block;
-    width: 100%;
-    height: 12.5vh;
-    object-fit: cover;
-    border-radius: 15px;
+    height: 100%;
+    min-height: 400px;
+    isolation: isolate;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-xl);
+    background: #101017;
+    color: var(--text);
+    text-decoration: none;
+    box-shadow: 0 30px 60px -36px rgba(0, 0, 0, 0.95);
 }
 
-.cuisine img,
-.musculation img,
-.vetement img {
+.passion-card:hover,
+.passion-card:focus-visible {
+    border-color: color-mix(in srgb, var(--accent) 60%, transparent);
+    box-shadow:
+        0 0 0 1px color-mix(in srgb, var(--accent) 30%, transparent),
+        0 40px 90px -40px color-mix(in srgb, var(--accent) 75%, transparent);
+}
+
+.passion-card:focus-visible {
+    outline-color: var(--accent);
+}
+
+/* Photo d'origine en fond */
+.passion-card__photo {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 12.5vh;
-    height: 100cqi;
-    transform: translate(-50%, -50%) rotate(-90deg) scale(1.05);
-}
-
-
-main h2 {
-    margin-top: 20px;
-    color: #ffffff;
-    font-family: 'Agrandir', sans-serif;
-    font-size: 1.5rem;
-    text-align: center;
-}
-footer {
+    inset: 0;
+    z-index: -2;
     width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.62) saturate(1.05);
+    transform: scale(1.03);
+    transition: transform 1.4s var(--ease), filter 0.6s ease;
 }
 
-.navigation {
-    position: fixed;
-    bottom: 20px;
+.passion-card:hover .passion-card__photo,
+.passion-card:focus-visible .passion-card__photo {
+    filter: brightness(0.78) saturate(1.15);
+    transform: scale(1.09);
+}
+
+/* Voile : halo coloré derrière l'objet + dégradé sombre sous le texte */
+.passion-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+        radial-gradient(55% 48% at 50% 36%, color-mix(in srgb, var(--accent) 28%, transparent), transparent 72%),
+        linear-gradient(to top, rgba(8, 8, 12, 0.97) 6%, rgba(8, 8, 12, 0.72) 38%, rgba(8, 8, 12, 0.08) 78%);
+}
+
+/* Zone où est dessiné l'objet 3D */
+.passion-card__stage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 61%;
+    pointer-events: none;
+}
+
+.passion-card__body {
+    position: absolute;
     left: 0;
     right: 0;
-    margin: 0 auto;
-    z-index: 1000;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 90%;
-    max-width: 800px;
-    height: 74px;
-    padding: 0 15px;
-    background-color: rgba(13, 13, 17, 0.85);
-    backdrop-filter: blur(12px);
-    border: 2px outset #ffffff;
-    border-radius: 80px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-    font-family: 'Brixton', sans-serif;
-    animation: apparitionDepuisBas 1.5s ease-out;
-    transition: box-shadow 0.4s ease, border-color 0.4s ease;
-    background-color: rgba(13, 13, 17, 0.3);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    bottom: 0;
+    display: grid;
+    justify-items: start;
+    gap: 12px;
+    padding: 26px 28px 28px;
 }
 
-.navigation:hover {
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+.passion-card__num {
+    font-family: var(--font-label);
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    color: var(--accent);
 }
 
-.navigation a {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
-    color: #ffffff;
-    text-decoration: none;
-    padding: 6px;
-    transition: transform 0.3s ease;
-}
-
-.navigation a:hover {
-    transform: translateY(-6px);
-}
-
-.icon {
-    width: clamp(18px, 4vw, 24px);
-    height: auto;
-    display: block;
-    filter: brightness(0) invert(1);
-    -webkit-filter: brightness(0) invert(1);
-    color: #ffffff;
-    object-fit: contain;
-}
-
-.libelle {
-    color: #ffffff;
-    font-size: clamp(0.65rem, 1.8vw, 0.85rem);
+.passion-card__title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 2.4vw, 2.35rem);
     line-height: 1;
-    white-space: nowrap;
+    letter-spacing: -0.01em;
+    text-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
 }
 
-@media (max-width: 760px) {
-    main {
+.passion-card__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+    font-family: var(--font-label);
+    font-size: 0.98rem;
+    color: var(--accent);
+}
+
+.passion-card__cta svg {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.4s var(--ease);
+}
+
+.passion-card:hover .passion-card__cta svg,
+.passion-card:focus-visible .passion-card__cta svg {
+    transform: translateX(5px);
+}
+
+/* Carte large : texte à gauche, objet 3D à droite */
+@container (min-width: 620px) {
+    .passion-card::before {
+        background:
+            radial-gradient(42% 62% at 70% 46%, color-mix(in srgb, var(--accent) 30%, transparent), transparent 72%),
+            linear-gradient(90deg, rgba(8, 8, 12, 0.95) 8%, rgba(8, 8, 12, 0.6) 44%, rgba(8, 8, 12, 0.12) 80%),
+            linear-gradient(to top, rgba(8, 8, 12, 0.7), transparent 45%);
+    }
+
+    .passion-card__stage {
+        left: auto;
+        right: 0;
+        width: 60%;
+        height: 100%;
+    }
+
+    .passion-card__body {
+        right: auto;
+        max-width: 46%;
+        padding: 34px 36px;
+    }
+
+    .passion-card__title {
+        font-size: clamp(2.2rem, 3.6vw, 3.1rem);
+    }
+}
+
+/* Sans WebGL : les cartes restent complètes (photo + texte) */
+.no-webgl .passion-card__stage {
+    display: none;
+}
+
+/*
+ * Mise en page automatique, quel que soit le nombre de passions :
+ * la première carte est en grand et la dernière ligne est toujours remplie.
+ */
+
+@media (max-width: 640px) {
+    .passion-card {
+        min-height: 370px;
+    }
+}
+
+/* Tablette : 2 colonnes, première carte sur toute la largeur */
+@media (min-width: 641px) and (max-width: 1024px) {
+    .passion-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-auto-rows: minmax(400px, auto);
+        gap: 22px;
+    }
+
+    .passion-grid__item:first-child,
+    .passion-grid__item:last-child:nth-child(even) {
+        grid-column: span 2;
     }
 }
 
-@media (max-width: 520px) {
-    body {
-        padding: 16px;
+/* Ordinateur : grille de 6 colonnes, 3 cartes par ligne après une première ligne « grande + petite » */
+@media (min-width: 1025px) {
+    .passion-grid {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        grid-auto-rows: minmax(400px, auto);
+        gap: 22px;
     }
 
-    main {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 16px;
+    .passion-grid__item {
+        grid-column: span 2;
+    }
+
+    .passion-grid__item:first-child {
+        grid-column: span 4;
+    }
+
+    /* Il reste 2 cartes sur la dernière ligne : elles se partagent la largeur */
+    .passion-grid__item:nth-last-child(2):nth-child(3n),
+    .passion-grid__item:last-child:nth-child(3n + 1) {
+        grid-column: span 3;
+    }
+
+    /* Il reste 1 carte seule : elle prend toute la largeur */
+    .passion-grid__item:last-child:nth-child(3n),
+    .passion-grid__item:first-child:last-child {
+        grid-column: span 6;
     }
 }

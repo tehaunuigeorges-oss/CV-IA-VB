@@ -1,146 +1,170 @@
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-    margin: 0px;
-    padding: 0px;
-}
+/* =========================================================
+   Mes compétences — deux cartes 3D (soft skills / hard skills)
+   ========================================================= */
 
-@font-face {
-    font-family: 'Agrandir';
-    src: url('../ressources/Agrandir.otf');
-}
-
-@font-face {
-    font-family: 'Inter';
-    src: url('../ressources/Inter.ttf');
-}
-
-body {
-    min-height: 100vh;
-    background-color: #0d0d11;
-    color: #ffffff;
-    font-family: 'Inter', sans-serif;
-    padding: 20PX;
-}
-header {
-    justify-self: center;
-    width: 500px;
-    height: auto;
-    padding: 15px;
-    border: 1px outset #ffffff;
-    border-radius: 12px;
-    transition: box-shadow 0.4s ease;
-    text-align: center;
-    margin-bottom: 50px;
-}
-footer {
-    width: 100%;
-}
+/* Autant de cartes que de catégories dans js/contenu.js */
 .competences {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 40px;
-}
-
-.competences h1 {
-      justify-self: center;
-    width: min(var(--title-width), 100%);
-    height: var(--title-height);
-    padding: 15px;
-    border: 1px outset #ffffff;
-    border-radius: 12px;
-    transition: box-shadow 0.4s ease;
-    text-align: center;
-    font-family: 'Agrandir';
-    margin-bottom: 20px;
-}
-.competences ul {
-    padding: 60px;
-    border: 1px outset #ffffff;
-    border-radius: 12px;
-    transition: box-shadow 0.4s ease;
-    text-align: left;
-    font-family: 'Inter';
-    font-size: 20PX;
-
-}
-header:hover,
-.competences ul:hover,
-.competences h1:hover {
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
-}
-.navigation {
-    position: fixed;
-    bottom: 20px;
-    left: 0;
-    right: 0;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
+    align-items: stretch;
+    gap: 26px;
+    width: min(1100px, 100% - var(--gutter) * 2);
     margin: 0 auto;
-    z-index: 1000;
+}
+
+.competences > .reveal {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 90%;
-    max-width: 800px;
-    height: 74px;
-    padding: 0 15px;
-    background-color: rgba(13, 13, 17, 0.85);
-    backdrop-filter: blur(12px);
-    border: 2px outset #ffffff;
-    border-radius: 80px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-    font-family: 'Brixton', sans-serif;
-    animation: apparitionDepuisBas 1.5s ease-out;
-    transition: box-shadow 0.4s ease, border-color 0.4s ease;
-    background-color: rgba(13, 13, 17, 0.3);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
 }
 
-.navigation:hover {
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+.skill-card {
+    position: relative;
+    flex: 1;
+    padding: clamp(26px, 4vw, 44px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+    box-shadow: 0 34px 70px -40px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
-.navigation a {
+.skill-card:hover {
+    border-color: rgba(143, 131, 255, 0.5);
+    box-shadow: 0 0 0 1px rgba(143, 131, 255, 0.25), 0 44px 90px -44px rgba(143, 131, 255, 0.65);
+}
+
+.skill-card__head {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 4px;
-    color: #ffffff;
-    text-decoration: none;
-    padding: 6px;
-    transition: transform 0.3s ease;
+    gap: 16px;
+    transform: translateZ(30px);
 }
 
-.navigation a:hover {
-    transform: translateY(-6px);
+.skill-card__icon {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border: 1px solid rgba(143, 131, 255, 0.45);
+    border-radius: 14px;
+    background: rgba(143, 131, 255, 0.14);
+    color: #d6d1ff;
 }
 
-.icon {
-    width: clamp(18px, 4vw, 24px);
-    height: auto;
-    display: block;
-    filter: brightness(0) invert(1);
-    -webkit-filter: brightness(0) invert(1);
-    color: #ffffff;
-    object-fit: contain;
+.skill-card__icon svg {
+    width: 24px;
+    height: 24px;
 }
 
-.libelle {
-    color: #ffffff;
-    font-size: clamp(0.65rem, 1.8vw, 0.85rem);
-    line-height: 1;
-    white-space: nowrap;
+.skill-card h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 2.8vw, 2.1rem);
 }
 
+/* Soft skills : pastilles qui flottent au-dessus de la carte */
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 30px;
+    transform: translateZ(46px);
+    transform-style: preserve-3d;
+}
 
-@media (max-width: 520px) {
-    main {
-        padding: 28px 18px 40px;
+.chips li {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.05);
+    font-size: 1.06rem;
+    transition: transform 0.4s var(--ease), border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.chips li::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-2);
+    box-shadow: 0 0 10px rgba(62, 224, 207, 0.8);
+}
+
+.chips li:hover {
+    border-color: rgba(143, 131, 255, 0.55);
+    background: rgba(143, 131, 255, 0.12);
+    transform: translateZ(18px) translateY(-3px);
+}
+
+/* Hard skills : grandes tuiles */
+.tiles {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 30px;
+    transform: translateZ(46px);
+    transform-style: preserve-3d;
+}
+
+.tile {
+    display: grid;
+    gap: 14px;
+    padding: 22px;
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    border-radius: 18px;
+    background:
+        radial-gradient(120% 90% at 0% 0%, rgba(143, 131, 255, 0.22), transparent 60%),
+        rgba(255, 255, 255, 0.04);
+    transition: transform 0.4s var(--ease), border-color 0.3s ease;
+}
+
+.tile:hover {
+    border-color: rgba(62, 224, 207, 0.55);
+    transform: translateZ(18px) translateY(-3px);
+}
+
+.tile__glyph {
+    font-family: Consolas, 'Cascadia Code', 'SFMono-Regular', Menlo, monospace;
+    font-size: 1.6rem;
+    color: var(--accent-2);
+}
+
+.tile__label {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+}
+
+/* Les pastilles se retournent une à une quand la carte apparaît */
+.js .reveal:not(.is-in) .chips li,
+.js .reveal:not(.is-in) .tile {
+    opacity: 0;
+}
+
+.js .reveal.is-in .chips li,
+.js .reveal.is-in .tile {
+    transform-origin: 50% 0%;
+    animation: retournement 0.8s var(--ease) backwards;
+    animation-delay: calc(0.25s + var(--n, 0) * 80ms);
+}
+
+.js .reveal.is-done .chips li,
+.js .reveal.is-done .tile {
+    animation: none;
+}
+
+@keyframes retournement {
+    from {
+        opacity: 0;
+        transform: rotateX(-80deg);
     }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
 
-    main p {
-        font-size: 1rem;
+@media (max-width: 420px) {
+    .tiles {
+        grid-template-columns: minmax(0, 1fr);
     }
 }

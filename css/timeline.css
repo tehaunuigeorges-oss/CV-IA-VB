@@ -1,0 +1,205 @@
+/* =========================================================
+   Frise chronologique (Parcours et Expériences)
+   ========================================================= */
+
+.timeline {
+    --progress: 0;
+    position: relative;
+    display: grid;
+    gap: clamp(28px, 5vh, 52px);
+    width: min(1040px, 100% - var(--gutter) * 2);
+    margin: 0 auto;
+    padding: 8px 0 24px;
+}
+
+/* Ligne centrale + partie lumineuse qui se remplit au défilement */
+.timeline::before,
+.timeline::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    margin-left: -1px;
+    border-radius: 2px;
+}
+
+.timeline::before {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.timeline::after {
+    background: linear-gradient(to bottom, var(--accent), var(--accent-2));
+    box-shadow: 0 0 16px rgba(143, 131, 255, 0.7);
+    transform: scaleY(var(--progress));
+    transform-origin: top;
+}
+
+.timeline-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 84px;
+}
+
+.timeline-item:nth-child(odd) .timeline-content {
+    grid-column: 1;
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+    grid-column: 2;
+}
+
+/* Les cartes arrivent en pivotant depuis leur côté de la frise */
+.js .timeline-item.reveal:nth-child(odd) {
+    transform: perspective(1200px) translate3d(-48px, 30px, 0) rotateY(16deg);
+    transform-origin: 100% 50%;
+}
+
+.js .timeline-item.reveal:nth-child(even) {
+    transform: perspective(1200px) translate3d(48px, 30px, 0) rotateY(-16deg);
+    transform-origin: 0% 50%;
+}
+
+.js .timeline-item.reveal.is-in:nth-child(n) {
+    transform: none;
+}
+
+/* Losange 3D qui tourne sur la ligne */
+.timeline-node {
+    position: absolute;
+    top: 36px;
+    left: 50%;
+    width: 22px;
+    height: 22px;
+    margin-left: -11px;
+    perspective: 200px;
+}
+
+.timeline-node::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    border-radius: 6px;
+    background: var(--bg);
+    animation: rotationLosange 6s linear infinite;
+    transition: border-color 0.5s ease, background-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+.timeline-item.is-active .timeline-node::before {
+    border-color: var(--accent-2);
+    background: var(--accent);
+    box-shadow: 0 0 0 6px rgba(143, 131, 255, 0.16), 0 0 26px rgba(143, 131, 255, 0.9);
+}
+
+@keyframes rotationLosange {
+    from {
+        transform: rotateY(0deg) rotate(45deg);
+    }
+    to {
+        transform: rotateY(360deg) rotate(45deg);
+    }
+}
+
+.timeline-content {
+    position: relative;
+    padding: 28px 30px 30px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+    box-shadow: 0 30px 60px -36px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.timeline-content:hover {
+    border-color: rgba(143, 131, 255, 0.5);
+    box-shadow: 0 0 0 1px rgba(143, 131, 255, 0.25), 0 40px 80px -40px rgba(143, 131, 255, 0.6);
+}
+
+/* Petit trait qui relie la carte au losange */
+.timeline-content::before {
+    content: "";
+    position: absolute;
+    top: 46px;
+    width: 42px;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(143, 131, 255, 0.7), rgba(143, 131, 255, 0.1));
+}
+
+.timeline-item:nth-child(odd) .timeline-content::before {
+    right: -43px;
+    transform: scaleX(-1);
+}
+
+.timeline-item:nth-child(even) .timeline-content::before {
+    left: -43px;
+}
+
+.timeline-date {
+    display: inline-block;
+    padding: 6px 14px;
+    border: 1px solid rgba(143, 131, 255, 0.45);
+    border-radius: 999px;
+    background: rgba(143, 131, 255, 0.14);
+    color: #ffffff;
+    font-family: var(--font-label);
+    font-size: 0.95rem;
+    letter-spacing: 0.06em;
+    transform: translateZ(30px);
+}
+
+.timeline-content h2 {
+    margin-top: 16px;
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 2.4vw, 1.8rem);
+    transform: translateZ(22px);
+}
+
+.timeline-content p {
+    margin-top: 10px;
+    color: var(--text-muted);
+    font-size: 1.04rem;
+    line-height: 1.75;
+    transform: translateZ(12px);
+}
+
+@media (max-width: 760px) {
+    .timeline::before,
+    .timeline::after {
+        left: 18px;
+    }
+
+    .timeline-item {
+        grid-template-columns: minmax(0, 1fr);
+        padding-left: 52px;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-content,
+    .timeline-item:nth-child(even) .timeline-content {
+        grid-column: 1;
+    }
+
+    .timeline-node {
+        left: 18px;
+        top: 34px;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-content::before,
+    .timeline-item:nth-child(even) .timeline-content::before {
+        left: -35px;
+        right: auto;
+        width: 34px;
+        transform: none;
+    }
+
+    .js .timeline-item.reveal:nth-child(odd),
+    .js .timeline-item.reveal:nth-child(even) {
+        transform: perspective(1200px) translate3d(36px, 20px, 0) rotateY(-12deg);
+        transform-origin: 0% 50%;
+    }
+
+    .timeline-content {
+        padding: 22px 22px 24px;
+    }
+}

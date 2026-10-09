@@ -1,209 +1,113 @@
-:root {
-    --title-width: 600px;
-    --title-height: auto;
-    --card-height: 220px;
-}
+/* =========================================================
+   Mes projets — cartes 3D, le logo ressort au survol
+   ========================================================= */
 
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-@font-face {
-    font-family: 'Agrandir';
-    src: url('../ressources/Agrandir.otf');
-}
-
-@font-face {
-    font-family: 'Brixton';
-    src: url('../ressources/Brixton.ttf');
-}
-
-@font-face {
-    font-family: 'Inter';
-    src: url('../ressources/Inter.ttf');
-}
-
-@keyframes apparitionDepuisBas {
-    0% {
-        opacity: 0;
-        transform: translateY(40px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-body {
-    min-height: 100vh;
-    padding: 24px;
-    background-color: #0d0d11;
-    color: #ffffff;
-    font-family: 'Inter', sans-serif;
-}
-
-main {
+.project-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 40px;
-    width: 100%;
+    gap: 26px;
+    width: min(var(--page-width), 100% - var(--gutter) * 2);
     margin: 0 auto;
-    animation: apparitionDepuisBas 0.8s ease-out;
-    margin-bottom: 100px;
 }
 
-main h1 {
-    grid-column: 1 / -1;
-    justify-self: center;
-    width: min(var(--title-width), 100%);
-    height: var(--title-height);
-    padding: 15px;
-    border: 1px outset #ffffff;
-    border-radius: 12px;
-    transition: box-shadow 0.4s ease;
-    text-align: center;
-    ;
-}
-
-main h1:hover {
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
-}
-
-main > a {
+.project-card {
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    min-width: 0;
-    width: 100%;
-    height: var(--card-height);
-    padding: 15px;
-    overflow: hidden;
-    border: 2px outset #ffffff;
-    border-radius: 15px;
-    box-shadow: 0 0 0 rgba(255, 255, 255, 0), 0 10px 25px rgba(0, 0, 0, 0.5);
-    color: #ffffff;
+    height: 100%;
+    padding: 16px 16px 22px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.02));
+    box-shadow: 0 34px 70px -40px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    color: var(--text);
     text-decoration: none;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-main > a:hover,
-main > a:focus-visible {
-    z-index: 1;
-    transform: scale(1.1);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 10px 25px rgba(0, 0, 0, 0.5);
+.project-card:hover,
+.project-card:focus-visible {
+    border-color: rgba(143, 131, 255, 0.55);
+    box-shadow: 0 0 0 1px rgba(143, 131, 255, 0.25), 0 44px 90px -44px rgba(143, 131, 255, 0.7);
 }
 
-.image-frame {
+/* Logos sur fond blanc (leurs images ont un fond blanc) */
+.project-card__media {
     position: relative;
-    container-type: inline-size;
-    width: 100%;
-    height: 12.5vh;
+    aspect-ratio: 16 / 10;
     overflow: hidden;
-    border-radius: 15px;
+    border-radius: 18px;
+    background: #ffffff;
+    box-shadow: 0 26px 40px -26px rgba(0, 0, 0, 0.9);
+    transform: translateZ(36px);
+    transition: transform 0.6s var(--ease);
 }
 
-main img {
-    display: block;
-    width: 100%;
-    height: 12.5vh;
-    object-fit: cover;
-    border-radius: 15px;
+.project-card.is-tilting .project-card__media {
+    transform: translateZ(60px);
 }
 
-main h2 {
-    margin-top: 20px;
-    color: #ffffff;
-    font-family: 'Agrandir', sans-serif;
-    font-size: 1.5rem;
-    text-align: center;
-}
-footer {
-    width: 100%;
-}
-
-.navigation {
-    position: fixed;
-    bottom: 20px;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    z-index: 1000;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 90%;
-    max-width: 800px;
-    height: 74px;
-    padding: 0 15px;
-    background-color: rgba(13, 13, 17, 0.85);
-    backdrop-filter: blur(12px);
-    border: 2px outset #ffffff;
-    border-radius: 80px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-    font-family: 'Brixton', sans-serif;
-    animation: apparitionDepuisBas 1.5s ease-out;
-    transition: box-shadow 0.4s ease, border-color 0.4s ease;
-    background-color: rgba(13, 13, 17, 0.3);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-}
-
-.navigation:hover {
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
-}
-
-.navigation a {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
-    color: #ffffff;
-    text-decoration: none;
-    padding: 6px;
-    transition: transform 0.3s ease;
-}
-
-.navigation a:hover {
-    transform: translateY(-6px);
-}
-
-.icon {
-    width: clamp(18px, 4vw, 24px);
-    height: auto;
-    display: block;
-    filter: brightness(0) invert(1);
-    -webkit-filter: brightness(0) invert(1);
-    color: #ffffff;
+.project-card__media img {
+    position: absolute;
+    inset: 18px;
+    width: calc(100% - 36px);
+    height: calc(100% - 36px);
     object-fit: contain;
 }
 
-.libelle {
-    color: #ffffff;
-    font-size: clamp(0.65rem, 1.8vw, 0.85rem);
-    line-height: 1;
-    white-space: nowrap;
+.project-card__body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 22px 8px 0;
+    transform: translateZ(24px);
 }
 
-@media (max-width: 760px) {
-    main {
+.project-card h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.35rem, 2vw, 1.6rem);
+}
+
+.project-card__url {
+    display: block;
+    margin-top: 6px;
+    color: var(--text-dim);
+    font-size: 0.9rem;
+}
+
+.project-card__arrow {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--border-strong);
+    border-radius: 50%;
+    transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease, transform 0.45s var(--ease);
+}
+
+.project-card__arrow svg {
+    width: 18px;
+    height: 18px;
+}
+
+.project-card:hover .project-card__arrow,
+.project-card:focus-visible .project-card__arrow {
+    border-color: transparent;
+    background: var(--accent-grad);
+    color: #0b0b12;
+    transform: rotate(45deg);
+}
+
+@media (max-width: 960px) {
+    .project-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
-@media (max-width: 520px) {
-    body {
-        padding: 16px;
-    }
-
-    main {
+@media (max-width: 620px) {
+    .project-grid {
         grid-template-columns: minmax(0, 1fr);
-        gap: 16px;
+        gap: 18px;
     }
 }

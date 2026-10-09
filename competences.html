@@ -1,67 +1,65 @@
 <!doctype html>
-<html>
+<html lang="fr">
     <head>
-        <title>Mes competences Web</title>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="css/competences.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mes compétences — Tehaunui GEORGES</title>
+        <meta name="description" content="Compétences de Tehaunui GEORGES : soft skills et hard skills.">
+        <link rel="stylesheet" href="css/base.css">
+        <link rel="stylesheet" href="css/competences.css">
+        <script>document.documentElement.classList.add('js');</script>
     </head>
     <body>
-        <header>
-            <h1>Mes Compétences</h1>
-        </header>
-        <main>
-            <div class="competences">
-                <div class="colonne-gauche">
-                    <h1>Soft skills</h1>
-                    <ul>
-                        <li>Autonomie</li>
-                        <li>Rigueur</li>
-                        <li>Sens des responsabilités</li>
-                        <li>Pédagogogue</li>
-                        <li>Communication</li>
-                        <li>Esprit d'équipe</li>
-                    </ul>
-                </div>
-                <div class="colonne-droiite">
-                    <h1>Hard skills</h1>
-                    <ul>
-                        <li>HTML/css</li>
-                        <li>GO</li>
-                </div>
+        <div class="backdrop" aria-hidden="true"><div class="backdrop__floor"><div class="backdrop__grid"></div></div></div>
+
+        <header class="page-header">
+            <div class="reveal">
+                <div class="cube" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                <h1 class="page-title">Mes Compétences</h1>
             </div>
-            <div class="langue"></div>
+        </header>
+
+        <main>
+            <!-- Créé à partir de la liste "competences" de js/contenu.js -->
+            <div data-rendu="competences"></div>
+            <noscript><p class="content-error">Ce site a besoin de JavaScript pour afficher cette rubrique.</p></noscript>
         </main>
-         <footer>
-            <nav class="navigation">
+
+        <footer>
+            <nav class="navigation" aria-label="Navigation principale">
                 <a href="index.html">
-                <img class="icon" src="ressources/gemini-svg.svg" alt="Gemini SVG 1" />
-                    <p class="libelle">Accueil</p>
+                    <img class="icon" src="ressources/gemini-svg.svg" alt="" aria-hidden="true">
+                    <span class="libelle">Accueil</span>
                 </a>
                 <a href="passion.html">
-                <img class="icon" src="ressources/gemini-svg (1).svg" alt="Gemini SVG 2" />
-                    <p class="libelle">Passion</p>
+                    <img class="icon" src="ressources/gemini-svg (1).svg" alt="" aria-hidden="true">
+                    <span class="libelle">Passion</span>
                 </a>
                 <a href="parcours.html">
-                    <img class="icon" src="ressources/gemini-svg (2).svg" alt="Gemini SVG 3" />
-                    <p class="libelle">Parcours</p>
+                    <img class="icon" src="ressources/gemini-svg (2).svg" alt="" aria-hidden="true">
+                    <span class="libelle">Parcours</span>
                 </a>
                 <a href="projet.html">
-                <img class="icon" src="ressources/gemini-svg (3).svg" alt="Gemini SVG 4" />
-                    <p class="libelle">Projet</p>
+                    <img class="icon" src="ressources/gemini-svg (3).svg" alt="" aria-hidden="true">
+                    <span class="libelle">Projet</span>
                 </a>
-                <a href="competences.html">
-                    <img class="icon" src="ressources/gemini-svg (4).svg" alt="Gemini SVG 5" />
-                    <p class="libelle">Compétences</p>
+                <a href="competences.html" aria-current="page">
+                    <img class="icon" src="ressources/gemini-svg (4).svg" alt="" aria-hidden="true">
+                    <span class="libelle">Compétences</span>
                 </a>
                 <a href="experiences.html">
-                <img class="icon" src="ressources/gemini-svg (5).svg" alt="Gemini SVG 6" />
-                    <p class="libelle">Expériences</p>
+                    <img class="icon" src="ressources/gemini-svg (5).svg" alt="" aria-hidden="true">
+                    <span class="libelle">Expériences</span>
                 </a>
-                <a href="https://github.com/tehaunuigeorges-oss">
-                    <img class="icon" src="ressources\25231.png" alt="github" />
-                <p class="libelle">Mon Github</p>
+                <a href="https://github.com/tehaunuigeorges-oss" target="_blank" rel="noopener">
+                    <img class="icon" src="ressources/25231.png" alt="" aria-hidden="true">
+                    <span class="libelle">Mon Github</span>
                 </a>
             </nav>
         </footer>
+
+        <script src="js/contenu.js" defer></script>
+        <script src="js/rendu.js" defer></script>
+        <script src="js/site.js" defer onerror="document.documentElement.classList.remove('js')"></script>
     </body>
+</html>

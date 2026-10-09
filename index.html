@@ -1,58 +1,87 @@
 <!doctype html>
-<html>
+<html lang="fr">
     <head>
-        <title>Mon CV web</title>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="css/style.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mon CV web — Tehaunui GEORGES</title>
+        <meta name="description" content="CV web de Tehaunui GEORGES, étudiant en informatique et cybersécurité à Ynov Campus.">
+        <link rel="stylesheet" href="css/base.css">
+        <link rel="stylesheet" href="css/style.css">
+        <script>document.documentElement.classList.add('js');</script>
     </head>
     <body>
-        <main>
-            <div>
-                <h1>Présentation</h1>
-                <h2>Tehaunui GEORGES — Étudiant en Informatique & Cybersécurité | Ynov Campus</h2>
-                <p>Moi c'est Tehaunui ! Après mon bac scientifique (Maths, Physique, Sciences de l'Ingénieur), j'ai rejoint Ynov pour me plonger à fond dans l'informatique et la cybersécurité. Ce qui me motive au quotidien ? Comprendre le fonctionnement des systèmes, coder, et trouver des solutions pour sécuriser tout ça.
-                    Grâce à mon parcours et à des projets concrets comme la Robocup ou Course en Cours, j'ai pris goût au travail d'équipe et à la résolution de problèmes complexes. À côté des cours, je suis aussi animateur (titulaire du BAFA avec spécialisation Assistant Sanitaire), ce qui m'a appris à gérer des groupes, garder mon calme et communiquer facilement avec tout le monde.
-                    Curieux, autonome et toujours chaud pour apprendre de nouvelles choses, je cherche en permanence à développer mes compétences, que ce soit sur les bancs de l'école ou sur le terrain !
-                </p>
-                <a href="ressources\cv.Tehaunui.GEORGES.pdf">Mon cv en PDF</a>
+        <div class="backdrop" aria-hidden="true"><div class="backdrop__floor"><div class="backdrop__grid"></div></div></div>
+
+        <main class="hero">
+            <div class="hero__text">
+                <div class="reveal">
+                    <h1 class="eyebrow">Présentation</h1>
+                </div>
+                <div class="reveal" style="--i: 1">
+                    <h2 class="hero__title">
+                        <span class="hero__name">Tehaunui GEORGES</span>
+                        <span class="hero__role">— Étudiant en Informatique &amp; Cybersécurité | Ynov Campus</span>
+                    </h2>
+                </div>
+                <div class="hero__actions reveal" style="--i: 2">
+                    <a class="btn" href="ressources/cv.Tehaunui.GEORGES.pdf" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></svg>
+                        Mon cv en PDF
+                    </a>
+                </div>
+                <div class="hero__bio reveal" style="--i: 3">
+                    <p>Moi c'est Tehaunui ! Après mon bac scientifique (Maths, Physique, Sciences de l'Ingénieur), j'ai rejoint Ynov pour me plonger à fond dans l'informatique et la cybersécurité. Ce qui me motive au quotidien ? Comprendre le fonctionnement des systèmes, coder, et trouver des solutions pour sécuriser tout ça.</p>
+                    <p>Grâce à mon parcours et à des projets concrets comme la Robocup ou Course en Cours, j'ai pris goût au travail d'équipe et à la résolution de problèmes complexes. À côté des cours, je suis aussi animateur (titulaire du BAFA avec spécialisation Assistant Sanitaire), ce qui m'a appris à gérer des groupes, garder mon calme et communiquer facilement avec tout le monde.</p>
+                    <p>Curieux, autonome et toujours chaud pour apprendre de nouvelles choses, je cherche en permanence à développer mes compétences, que ce soit sur les bancs de l'école ou sur le terrain !</p>
+                </div>
             </div>
-            <img class="pp" 
-                src="ressources/Photo%20taken%20by%20%40lukadreur.webp"
-                alt="Ma photo"
-            />
+
+            <div class="hero__visual reveal" style="--i: 1">
+                <div class="portrait" data-tilt="9">
+                    <div class="portrait__orbit portrait__orbit--1"><span class="portrait__dot"></span></div>
+                    <div class="portrait__orbit portrait__orbit--2"><span class="portrait__dot"></span></div>
+                    <div class="portrait__orbit portrait__orbit--3"></div>
+                    <img class="pp"
+                        src="ressources/Photo%20taken%20by%20%40lukadreur.webp"
+                        alt="Ma photo"
+                    />
+                </div>
+            </div>
         </main>
+
         <footer>
-            <nav class="navigation">
-                <a href="index.html">
-                <img class="icon" src="ressources/gemini-svg.svg" alt="Gemini SVG 1" />
-                    <p class="libelle">Accueil</p>
+            <nav class="navigation" aria-label="Navigation principale">
+                <a href="index.html" aria-current="page">
+                    <img class="icon" src="ressources/gemini-svg.svg" alt="" aria-hidden="true">
+                    <span class="libelle">Accueil</span>
                 </a>
                 <a href="passion.html">
-                <img class="icon" src="ressources/gemini-svg (1).svg" alt="Gemini SVG 2" />
-                    <p class="libelle">Passion</p>
+                    <img class="icon" src="ressources/gemini-svg (1).svg" alt="" aria-hidden="true">
+                    <span class="libelle">Passion</span>
                 </a>
                 <a href="parcours.html">
-                    <img class="icon" src="ressources/gemini-svg (2).svg" alt="Gemini SVG 3" />
-                    <p class="libelle">Parcours</p>
+                    <img class="icon" src="ressources/gemini-svg (2).svg" alt="" aria-hidden="true">
+                    <span class="libelle">Parcours</span>
                 </a>
                 <a href="projet.html">
-                <img class="icon" src="ressources/gemini-svg (3).svg" alt="Gemini SVG 4" />
-                    <p class="libelle">Projet</p>
+                    <img class="icon" src="ressources/gemini-svg (3).svg" alt="" aria-hidden="true">
+                    <span class="libelle">Projet</span>
                 </a>
                 <a href="competences.html">
-                    <img class="icon" src="ressources/gemini-svg (4).svg" alt="Gemini SVG 5" />
-                    <p class="libelle">Compétences</p>
+                    <img class="icon" src="ressources/gemini-svg (4).svg" alt="" aria-hidden="true">
+                    <span class="libelle">Compétences</span>
                 </a>
                 <a href="experiences.html">
-                <img class="icon" src="ressources/gemini-svg (5).svg" alt="Gemini SVG 6" />
-                    <p class="libelle">Expériences</p>
+                    <img class="icon" src="ressources/gemini-svg (5).svg" alt="" aria-hidden="true">
+                    <span class="libelle">Expériences</span>
                 </a>
-                <a href="https://github.com/tehaunuigeorges-oss">
-                    <img class="icon" src="ressources\25231.png" alt="github" />
-                <p class="libelle">Mon Github</p>
+                <a href="https://github.com/tehaunuigeorges-oss" target="_blank" rel="noopener">
+                    <img class="icon" src="ressources/25231.png" alt="" aria-hidden="true">
+                    <span class="libelle">Mon Github</span>
                 </a>
             </nav>
         </footer>
+
+        <script src="js/site.js" defer onerror="document.documentElement.classList.remove('js')"></script>
     </body>
 </html>
