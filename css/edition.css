@@ -1,0 +1,475 @@
+/* =========================================================
+   Mode édition (js/edition.js) : cases « Ajouter », boutons « × »
+   et fenêtre de formulaire. Visible seulement en local.
+   ========================================================= */
+
+/* --- Interrupteur en haut à droite --- */
+
+.edition-interrupteur {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 1100;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-width: 42px;
+    height: 42px;
+    padding: 0 16px;
+    border: 1px dashed rgba(143, 131, 255, 0.75);
+    border-radius: 999px;
+    background: rgba(14, 14, 20, 0.78);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    color: var(--text);
+    font-family: var(--font-label);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.edition-interrupteur:hover {
+    border-color: var(--accent-2);
+    background: rgba(24, 24, 34, 0.9);
+}
+
+.edition-interrupteur:not(.is-actif) {
+    padding: 0;
+    border-style: solid;
+    border-color: var(--border);
+    color: var(--text-dim);
+}
+
+/* --- Cases « Ajouter » --- */
+
+.carte-ajout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+    padding: 28px;
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-xl);
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--text-muted);
+    font: inherit;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: none;
+    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease, transform 0.4s var(--ease);
+}
+
+.carte-ajout:hover,
+.carte-ajout:focus-visible {
+    border-color: var(--accent);
+    background: rgba(143, 131, 255, 0.08);
+    color: var(--text);
+    transform: translateY(-3px);
+}
+
+.carte-ajout__plus {
+    display: grid;
+    place-items: center;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: var(--accent-grad);
+    color: #0b0b12;
+    font-family: var(--font-display);
+    font-size: 2rem;
+    line-height: 1;
+    box-shadow: 0 12px 30px -12px rgba(143, 131, 255, 0.9);
+    transition: transform 0.4s var(--ease);
+}
+
+.carte-ajout:hover .carte-ajout__plus {
+    transform: rotate(90deg) scale(1.06);
+}
+
+.carte-ajout__label {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    color: var(--text);
+}
+
+.carte-ajout__detail {
+    font-size: 0.9rem;
+}
+
+.passion-grid__item--ajout .carte-ajout {
+    min-height: 370px;
+}
+
+.project-grid .carte-ajout {
+    min-height: 300px;
+}
+
+.competences .carte-ajout {
+    min-height: 240px;
+}
+
+/* Dans la frise, la case prend la place d'une carte */
+.timeline .carte-ajout.timeline-content {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    justify-items: start;
+    column-gap: 16px;
+    row-gap: 2px;
+    min-height: 0;
+    padding: 24px 26px;
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.02);
+    text-align: left;
+}
+
+.timeline .carte-ajout.timeline-content::before {
+    display: none;
+}
+
+.timeline .carte-ajout .carte-ajout__plus {
+    grid-row: span 2;
+    width: 44px;
+    height: 44px;
+    font-size: 1.6rem;
+}
+
+/* Ajouter une compétence dans une catégorie */
+.chips li.chip-ajout {
+    padding: 0;
+    border: 0;
+    background: none;
+}
+
+.chips li.chip-ajout::before {
+    display: none;
+}
+
+.chip-ajout button,
+.tile--ajout button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 1px dashed rgba(255, 255, 255, 0.3);
+    background: transparent;
+    color: var(--text-muted);
+    font: inherit;
+    cursor: pointer;
+    transition: border-color 0.3s ease, color 0.3s ease, background-color 0.3s ease;
+}
+
+.chip-ajout button {
+    padding: 12px 18px;
+    border-radius: 14px;
+    font-size: 1rem;
+}
+
+.tiles .tile.tile--ajout {
+    padding: 0;
+    border: 0;
+    background: none;
+}
+
+.tile--ajout button {
+    width: 100%;
+    height: 100%;
+    min-height: 104px;
+    border-radius: 18px;
+    font-size: 1rem;
+}
+
+.chip-ajout button:hover,
+.tile--ajout button:hover,
+.chip-ajout button:focus-visible,
+.tile--ajout button:focus-visible {
+    border-color: var(--accent);
+    background: rgba(143, 131, 255, 0.1);
+    color: var(--text);
+}
+
+/* --- Boutons « × » (apparaissent au survol) --- */
+
+.mode-edition .passion-grid__item,
+.mode-edition .project-grid > li,
+.mode-edition .chips li,
+.mode-edition .tiles li {
+    position: relative;
+}
+
+.bouton-supprimer {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 6;
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    background: rgba(8, 8, 12, 0.82);
+    color: #ffffff;
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+    opacity: 0;
+    transform: scale(0.85);
+    transition: opacity 0.2s ease, transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.chips .bouton-supprimer,
+.tiles .bouton-supprimer {
+    top: -9px;
+    right: -9px;
+    width: 26px;
+    height: 26px;
+    font-size: 1rem;
+}
+
+.mode-edition li:hover > .bouton-supprimer,
+.mode-edition .timeline-content:hover > .bouton-supprimer,
+.mode-edition .skill-card:hover > .bouton-supprimer,
+.bouton-supprimer:focus-visible {
+    opacity: 1;
+    transform: none;
+}
+
+.bouton-supprimer:hover {
+    border-color: #ef4444;
+    background: #ef4444;
+}
+
+/* Écrans tactiles : pas de survol, les boutons restent visibles */
+@media (hover: none) {
+    .bouton-supprimer {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* --- Fenêtre du formulaire --- */
+
+.editeur {
+    width: min(640px, calc(100% - 24px));
+    max-height: calc(100vh - 32px);
+    margin: auto;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 24px;
+    background: #121219;
+    color: var(--text);
+    box-shadow: 0 40px 100px -30px rgba(0, 0, 0, 0.95);
+}
+
+.editeur::backdrop {
+    background: rgba(5, 5, 10, 0.72);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+}
+
+.editeur__form {
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 34px);
+}
+
+.editeur__entete {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 22px 26px 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+.editeur__titre {
+    font-family: var(--font-display);
+    font-size: 1.45rem;
+}
+
+.editeur__fermer {
+    flex: none;
+    width: 38px;
+    height: 38px;
+    border: 1px solid var(--border-strong);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--text);
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.editeur__corps {
+    display: grid;
+    gap: 18px;
+    padding: 22px 26px;
+    overflow-y: auto;
+}
+
+.editeur__texte {
+    color: var(--text-muted);
+    line-height: 1.7;
+}
+
+.champ {
+    display: grid;
+    gap: 7px;
+}
+
+.champ[hidden] {
+    display: none;
+}
+
+.champ__label {
+    font-family: var(--font-label);
+    font-size: 0.95rem;
+}
+
+.champ input[type="text"],
+.champ input[type="url"],
+.champ textarea,
+.champ select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text);
+    font: inherit;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.champ textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.champ select option {
+    background: #121219;
+    color: var(--text);
+}
+
+.champ input:focus,
+.champ textarea:focus,
+.champ select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(143, 131, 255, 0.25);
+}
+
+.champ input[type="color"] {
+    width: 72px;
+    height: 44px;
+    padding: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 12px;
+    background: transparent;
+    cursor: pointer;
+}
+
+.champ input[type="file"] {
+    color: var(--text-muted);
+    font: inherit;
+}
+
+.champ input[type="file"]::file-selector-button {
+    margin-right: 12px;
+    padding: 9px 16px;
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text);
+    font: inherit;
+    cursor: pointer;
+}
+
+.champ__apercu {
+    max-width: 220px;
+    max-height: 140px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.champ__aide {
+    color: var(--text-dim);
+    font-size: 0.85rem;
+}
+
+.editeur__statut {
+    margin: 0 26px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.editeur__statut:empty {
+    display: none;
+}
+
+.editeur__statut.is-ok {
+    background: rgba(52, 211, 153, 0.12);
+    color: #6ee7b7;
+}
+
+.editeur__statut.is-erreur {
+    background: rgba(239, 68, 68, 0.12);
+    color: #fca5a5;
+}
+
+.editeur__statut.is-info {
+    background: rgba(251, 191, 36, 0.12);
+    color: #fde68a;
+}
+
+.editeur__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 18px 26px 6px;
+}
+
+.editeur__bouton {
+    padding: 12px 22px;
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--text);
+    font-family: var(--font-label);
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.editeur__bouton--principal {
+    border-color: transparent;
+    background: var(--accent-grad);
+    color: #0b0b12;
+}
+
+.editeur__bouton--danger {
+    background: #ef4444;
+    color: #ffffff;
+}
+
+.editeur__bouton:disabled {
+    opacity: 0.55;
+    cursor: wait;
+}
+
+.editeur__note {
+    padding: 6px 26px 20px;
+    color: var(--text-dim);
+    font-size: 0.82rem;
+    text-align: right;
+}

@@ -1,13 +1,17 @@
 /*
  * ============================================================
- *  CONTENU DU SITE : c'est le seul fichier à modifier
+ *  CONTENU DU SITE
  * ============================================================
  *
- *  Chaque rubrique (passions, parcours, expériences, projets,
- *  compétences) est une liste d'éléments entre [ ].
- *  L'ordre des éléments ici est l'ordre d'affichage sur le site.
+ *  Le plus simple : ouvre le site sur ton ordinateur et utilise
+ *  les cases « Ajouter » et les boutons « × » de chaque rubrique.
+ *  Ils mettent ce fichier à jour tout seuls.
  *
- *  Pour AJOUTER un élément :
+ *  Tu peux aussi le modifier à la main. Chaque rubrique (passions,
+ *  parcours, expériences, projets, compétences) est une liste
+ *  d'éléments entre [ ], affichés sur le site dans le même ordre.
+ *
+ *  Pour AJOUTER un élément à la main :
  *    1. copie un bloc { … } de la même rubrique (ou décommente
  *       le modèle prêt à l'emploi en enlevant les // devant) ;
  *    2. colle-le à l'endroit voulu, en séparant les blocs par
@@ -288,7 +292,14 @@ window.CONTENU = {
             categorie: "Soft skills",
             icone: "personnes",
             affichage: "pastilles",
-            elements: ["Autonomie", "Rigueur", "Sens des responsabilités", "Pédagogogue", "Communication", "Esprit d'équipe"]
+            elements: [
+                "Autonomie",
+                "Rigueur",
+                "Sens des responsabilités",
+                "Pédagogogue",
+                "Communication",
+                "Esprit d'équipe"
+            ]
         },
         {
             categorie: "Hard skills",

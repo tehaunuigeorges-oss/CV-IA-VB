@@ -108,9 +108,9 @@
 
     function frise(elements) {
         if (!elements.length) return '';
-        return '<ol class="timeline" data-timeline>' + elements.map(function (element) {
+        return '<ol class="timeline" data-timeline>' + elements.map(function (element, index) {
             var lignes = enListe(element.lignes);
-            return '<li class="timeline-item reveal">' +
+            return '<li class="timeline-item reveal" data-index="' + index + '">' +
                 '<span class="timeline-node" aria-hidden="true"></span>' +
                 '<article class="timeline-content" data-tilt="6">' +
                     (element.date ? '<span class="timeline-date">' + texte(element.date) + '</span>' : '') +
@@ -126,7 +126,7 @@
             var passions = liste('passions');
             if (!passions.length) return '';
             return '<ul class="passion-grid">' + passions.map(function (passion, index) {
-                return '<li class="passion-grid__item reveal" style="--i: ' + (index % 3) + '">' +
+                return '<li class="passion-grid__item reveal" data-index="' + index + '" style="--i: ' + (index % 3) + '">' +
                     '<a href="' + lienPassion(passion) + '" class="passion-card has-glare" data-tilt="6" style="--accent: ' + couleur(passion.couleur) + '">' +
                         (passion.photo ? '<img class="passion-card__photo" src="' + chemin(passion.photo) + '" alt="' + texte(passion.alt) + '"' + (index > 2 ? ' loading="lazy"' : '') + '>' : '') +
                         '<canvas class="passion-card__stage" ' + objet3d(passion) + ' aria-hidden="true"></canvas>' +
@@ -209,7 +209,7 @@
                 var adresse = domaine(projet.lien);
                 var balise = projet.lien ? 'a' : 'div';
                 var lien = projet.lien ? ' href="' + chemin(projet.lien) + '" target="_blank" rel="noopener"' : '';
-                return '<li class="reveal" style="--i: ' + (index % 3) + '">' +
+                return '<li class="reveal" data-index="' + index + '" style="--i: ' + (index % 3) + '">' +
                     '<' + balise + lien + ' class="project-card has-glare" data-tilt="8">' +
                         '<div class="project-card__media">' +
                             (projet.image ? '<img src="' + chemin(projet.image) + '" alt="' + texte(projet.alt) + '">' : '') +
@@ -233,14 +233,14 @@
                 var tuiles = categorie.affichage === 'tuiles';
                 var elements = enListe(categorie.elements).map(function (element, n) {
                     var nom = element && typeof element === 'object' ? element.nom : element;
-                    if (!tuiles) return '<li style="--n: ' + n + '">' + texte(nom) + '</li>';
+                    if (!tuiles) return '<li data-index="' + n + '" style="--n: ' + n + '">' + texte(nom) + '</li>';
                     var symbole = element && typeof element === 'object' && element.symbole ? element.symbole : '</>';
-                    return '<li class="tile" style="--n: ' + n + '">' +
+                    return '<li class="tile" data-index="' + n + '" style="--n: ' + n + '">' +
                         '<span class="tile__glyph" aria-hidden="true">' + texte(symbole) + '</span>' +
                         '<span class="tile__label">' + texte(nom) + '</span>' +
                     '</li>';
                 }).join('');
-                return '<div class="reveal" style="--i: ' + index + '">' +
+                return '<div class="reveal" data-index="' + index + '" style="--i: ' + index + '">' +
                     '<section class="skill-card" data-tilt="5">' +
                         '<div class="skill-card__head">' +
                             '<span class="skill-card__icon" aria-hidden="true">' + icone(categorie.icone, 'etoile') + '</span>' +
